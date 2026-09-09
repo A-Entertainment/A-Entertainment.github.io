@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Admin Login | A - Entertainment</title>
+
+    <meta
+        name="robots"
+        content="noindex,nofollow"
+    >
+
+    <link
+        rel="stylesheet"
+        href="admin.css"
+    >
+
+</head>
+
+<body class="auth-page">
+
+
+    <main class="login-container">
+
+        <div class="login-card">
+
+
+            <div class="login-logo">
+                A
+            </div>
+
+
+            <div class="login-heading">
+
+                <span class="admin-label">
+                    ADMIN PANEL
+                </span>
+
+                <h1>
+                    Welcome back
+                </h1>
+
+                <p>
+                    Sign in to manage A - Entertainment.
+                </p>
+
+            </div>
+
+
+            <form id="loginForm">
+
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="admin@example.com"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <div class="password-field">
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            id="togglePassword"
+                            class="password-toggle"
+                        >
+                            Show
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    id="loginButton"
+                    class="admin-primary-button"
+                >
+                    Sign In
+                </button>
+
+
+                <button
+                    type="button"
+                    id="forgotPassword"
+                    class="forgot-button"
+                >
+                    Forgot password?
+                </button>
+
+
+                <div
+                    id="loginMessage"
+                    class="auth-message"
+                    role="alert"
+                ></div>
+
+
+            </form>
+
+
+            <a
+                href="index.html"
+                class="back-home"
+            >
+                ← Back to A - Entertainment
+            </a>
+
+
+        </div>
+
+    </main>
+
+
+    <script
+        type="module"
+        src="login.js"
+    ></script>
+
+</body>
+
+</html>
+

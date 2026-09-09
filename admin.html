@@ -1,0 +1,531 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Admin Dashboard | A - Entertainment</title>
+
+    <meta
+        name="robots"
+        content="noindex,nofollow"
+    >
+
+    <link
+        rel="stylesheet"
+        href="admin.css"
+    >
+
+</head>
+
+
+<body class="admin-page">
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="admin-header">
+
+        <div class="admin-header-inner">
+
+            <a
+                href="index.html"
+                class="admin-brand"
+            >
+
+                <span class="admin-logo">
+                    A
+                </span>
+
+                <span>
+                    A - Entertainment
+                </span>
+
+            </a>
+
+
+            <div class="admin-header-actions">
+
+                <span
+                    id="adminEmail"
+                    class="admin-email"
+                >
+                    Admin
+                </span>
+
+                <a
+                    href="index.html"
+                    class="header-button"
+                >
+                    View Site
+                </a>
+
+                <button
+                    id="logoutButton"
+                    class="logout-button"
+                    type="button"
+                >
+                    Logout
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="admin-main">
+
+
+        <!-- =================================================
+             TOP
+        ================================================== -->
+
+        <section class="dashboard-top">
+
+            <div>
+
+                <span class="admin-label">
+                    CONTROL CENTER
+                </span>
+
+                <h1>
+                    Content Dashboard
+                </h1>
+
+                <p>
+                    Manage all Anime and Movie content from one place.
+                </p>
+
+            </div>
+
+
+            <button
+                id="newContentButton"
+                class="admin-primary-button"
+                type="button"
+            >
+                + Add Content
+            </button>
+
+        </section>
+
+
+        <!-- =================================================
+             STATS
+        ================================================== -->
+
+        <section class="stats-grid">
+
+            <div class="stat-card">
+
+                <span>
+                    Total Content
+                </span>
+
+                <strong id="totalCount">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span>
+                    Anime
+                </span>
+
+                <strong id="animeCount">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span>
+                    Movies
+                </span>
+
+                <strong id="movieCount">
+                    0
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             CONTENT MANAGER
+        ================================================== -->
+
+        <section class="manager-section">
+
+
+            <div class="manager-toolbar">
+
+                <div>
+
+                    <h2>
+                        Your Content
+                    </h2>
+
+                    <p>
+                        Edit or remove existing cards.
+                    </p>
+
+                </div>
+
+
+                <div class="manager-controls">
+
+                    <input
+                        type="search"
+                        id="adminSearch"
+                        placeholder="Search content..."
+                    >
+
+
+                    <select id="typeFilter">
+
+                        <option value="all">
+                            All
+                        </option>
+
+                        <option value="anime">
+                            Anime
+                        </option>
+
+                        <option value="movie">
+                            Movies
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="contentList"
+                class="admin-content-list"
+            >
+                <!-- Firebase content -->
+            </div>
+
+
+            <div
+                id="adminEmpty"
+                class="admin-empty"
+                hidden
+            >
+
+                <div>
+                    ◌
+                </div>
+
+                <h3>
+                    No content yet
+                </h3>
+
+                <p>
+                    Click "Add Content" to create your first card.
+                </p>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =====================================================
+         CONTENT MODAL
+    ====================================================== -->
+
+    <div
+        id="contentModal"
+        class="admin-modal"
+        hidden
+    >
+
+        <div
+            class="modal-backdrop"
+            id="modalBackdrop"
+        ></div>
+
+
+        <div class="modal-card">
+
+
+            <div class="modal-header">
+
+                <div>
+
+                    <span class="admin-label">
+                        CONTENT EDITOR
+                    </span>
+
+                    <h2 id="modalTitle">
+                        Add Content
+                    </h2>
+
+                </div>
+
+
+                <button
+                    id="closeModal"
+                    class="modal-close"
+                    type="button"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <!-- =============================================
+                 FORM
+            ============================================== -->
+
+            <form id="contentForm">
+
+
+                <input
+                    type="hidden"
+                    id="contentId"
+                >
+
+
+                <!-- TYPE -->
+
+                <div class="form-group">
+
+                    <label for="contentType">
+                        Content Type
+                    </label>
+
+                    <select
+                        id="contentType"
+                        required
+                    >
+
+                        <option value="anime">
+                            Anime
+                        </option>
+
+                        <option value="movie">
+                            Movie
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- TITLE -->
+
+                <div class="form-group">
+
+                    <label for="contentTitle">
+                        Title
+                    </label>
+
+                    <input
+                        type="text"
+                        id="contentTitle"
+                        placeholder="Dragon Ball Super"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- IMAGE -->
+
+                <div class="form-group">
+
+                    <label for="contentImage">
+                        Poster / Image URL
+                    </label>
+
+                    <input
+                        type="url"
+                        id="contentImage"
+                        placeholder="https://example.com/poster.jpg"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- DESCRIPTION -->
+
+                <div class="form-group">
+
+                    <label for="contentDescription">
+                        Description
+                    </label>
+
+                    <textarea
+                        id="contentDescription"
+                        rows="4"
+                        placeholder="Write a short description..."
+                    ></textarea>
+
+                </div>
+
+
+                <!-- TAGS -->
+
+                <div class="form-group">
+
+                    <label for="contentTags">
+                        Search Tags
+                    </label>
+
+                    <input
+                        type="text"
+                        id="contentTags"
+                        placeholder="goku, dragon ball, dbs, saiyan"
+                    >
+
+                    <small>
+                        Separate tags with commas.
+                    </small>
+
+                </div>
+
+
+                <!-- MOVIE URL -->
+
+                <div
+                    id="movieFields"
+                    class="conditional-fields"
+                >
+
+                    <div class="form-group">
+
+                        <label for="movieDownloadUrl">
+                            Movie Download URL
+                        </label>
+
+                        <input
+                            type="url"
+                            id="movieDownloadUrl"
+                            placeholder="https://example.com/movie-download"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- ANIME EPISODES -->
+
+                <div
+                    id="animeFields"
+                    class="conditional-fields"
+                >
+
+                    <div class="episodes-editor-heading">
+
+                        <div>
+
+                            <h3>
+                                Episodes
+                            </h3>
+
+                            <small>
+                                Add as many episodes as you need.
+                            </small>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            id="addEpisodeButton"
+                            class="secondary-button"
+                        >
+                            + Add Episode
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="episodesEditor"
+                        class="episodes-editor"
+                    >
+                    </div>
+
+                </div>
+
+
+                <!-- FORM ACTIONS -->
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        id="cancelButton"
+                        class="secondary-button"
+                    >
+                        Cancel
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        id="saveButton"
+                        class="admin-primary-button"
+                    >
+                        Save Content
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="formMessage"
+                    class="form-message"
+                ></div>
+
+
+            </form>
+
+
+        </div>
+
+    </div>
+
+
+    <script
+        type="module"
+        src="admin.js"
+    ></script>
+
+</body>
+
+</html>
+
