@@ -66,6 +66,9 @@ const adminEmpty =
 const contentModal =
     document.getElementById("contentModal");
 
+console.log("ADMIN JS LOADED");
+console.log("CONTENT MODAL:", contentModal);
+
 const modalBackdrop =
     document.getElementById("modalBackdrop");
 
@@ -553,28 +556,25 @@ function openEditModal(item) {
 ========================================================= */
 
 function closeModalWindow() {
+    console.log("CLOSE BUTTON CLICKED");
 
-    if (!contentModal) return;
-
-    contentModal.setAttribute("hidden", "");
+    contentModal.hidden = true;
+    contentModal.style.display = "none";
 
     document.body.style.overflow = "";
-
 }
 
-
 if (closeModal) {
-    closeModal.addEventListener("click", closeModalWindow);
+    closeModal.onclick = closeModalWindow;
 }
 
 if (cancelButton) {
-    cancelButton.addEventListener("click", closeModalWindow);
+    cancelButton.onclick = closeModalWindow;
 }
 
 if (modalBackdrop) {
-    modalBackdrop.addEventListener("click", closeModalWindow);
+    modalBackdrop.onclick = closeModalWindow;
 }
-
 
 /* =========================================================
    CONTENT TYPE CHANGE
