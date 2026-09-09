@@ -19,7 +19,6 @@ import {
 import {
     collection,
     getDocs,
-    getDoc,
     doc,
     addDoc,
     updateDoc,
@@ -152,45 +151,6 @@ onAuthStateChanged(
         await loadContent();
     }
 );
-
-
-/* =========================================================
-   CHECK ADMIN
-========================================================= */
-
-async function checkAdmin(uid) {
-
-    try {
-
-        const adminRef =
-            doc(
-                db,
-                "admins",
-                uid
-            );
-
-
-        const snapshot =
-            await getDoc(adminRef);
-
-
-        return (
-            snapshot.exists() &&
-            snapshot.data().role === "admin"
-        );
-
-    } catch (error) {
-
-        console.error(
-            "Admin verification error:",
-            error
-        );
-
-        return false;
-
-    }
-
-}
 
 
 /* =========================================================
