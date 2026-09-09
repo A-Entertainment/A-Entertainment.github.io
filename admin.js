@@ -554,30 +554,26 @@ function openEditModal(item) {
 
 function closeModalWindow() {
 
-    contentModal.hidden = true;
+    if (!contentModal) return;
 
-    document.body.style.overflow =
-        "";
+    contentModal.setAttribute("hidden", "");
+
+    document.body.style.overflow = "";
 
 }
 
 
-closeModal.addEventListener(
-    "click",
-    closeModalWindow
-);
+if (closeModal) {
+    closeModal.addEventListener("click", closeModalWindow);
+}
 
+if (cancelButton) {
+    cancelButton.addEventListener("click", closeModalWindow);
+}
 
-cancelButton.addEventListener(
-    "click",
-    closeModalWindow
-);
-
-
-modalBackdrop.addEventListener(
-    "click",
-    closeModalWindow
-);
+if (modalBackdrop) {
+    modalBackdrop.addEventListener("click", closeModalWindow);
+}
 
 
 /* =========================================================
